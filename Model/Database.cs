@@ -4,6 +4,7 @@ using System.IO;
 using System.Text;
 using System.Threading.Tasks;
 using SQLite;
+using System.Reflection;
 
 namespace Model
 {
@@ -14,7 +15,7 @@ namespace Model
 
         public Database()
         {
-            dataPath = Path.Combine(@"C:\Users\harbaja16\source\repos\MarkCalculator", "MarkDatabase.db");
+            dataPath = Path.Combine(System.IO.Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), "MarkDatabase.db");
             defConstructor();
         }
         public Database(string databaseFilePath)
