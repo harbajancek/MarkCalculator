@@ -3,7 +3,7 @@ using SQLite;
 
 namespace Model
 {
-    internal class Mark : ATable
+    public class Mark : ATable
     {
         [Indexed]
         public int SubjectID { get; set; }

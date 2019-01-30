@@ -5,7 +5,7 @@ using SQLite;
 
 namespace Model
 {
-    internal class Subject : ATable
+    public class Subject : ATable
     {
         [Indexed]
         public int SubjectBookID { get; set; }

@@ -5,7 +5,7 @@ using SQLite;
 
 namespace Model
 {
-    internal abstract class ATable
+    public abstract class ATable
     {
         [PrimaryKey, AutoIncrement]
         public int ID { get; set; }

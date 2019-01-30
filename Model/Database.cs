@@ -10,22 +10,24 @@ namespace Model
     internal class Database
     {
         public string dataPath { get; }
-        private SQLiteAsyncConnection db;
+        SQLiteAsyncConnection db;
 
         public Database()
         {
-            dataPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "MarkDatabase.db");
+            dataPath = Path.Combine(@"C:\Users\harbaja16\source\repos\MarkCalculator", "MarkDatabase.db");
+            defConstructor();
         }
         public Database(string databaseFilePath)
         {
             dataPath = databaseFilePath;
+           defConstructor();
         }
-        async void defConstructor()
+        void defConstructor()
         {
-            db = getDBConnection();
-            await db.CreateTableAsync<Mark>();
-            await db.CreateTableAsync<Subject>();
-            await db.CreateTableAsync<SubjectBook>();
+             db = getDBConnection();
+             db.CreateTableAsync<Mark>().Wait();
+             db.CreateTableAsync<Subject>().Wait();
+             db.CreateTableAsync<SubjectBook>().Wait();
         }
 
         public async Task<int> AddItem<T>(T item) where T : ATable
@@ -38,14 +40,30 @@ namespace Model
             return await db.Table<T>().Where(item => item.ID == index).ToListAsync();
         }
 
+        public async Task<List<Subject>> GetSubjects(SubjectBook book)
+        {
+            return await db.Table<Subject>().Where(item => item.SubjectBookID == book.ID).ToListAsync();
+        }
+
+        public async Task<List<Mark>> GetMarks(Subject subject)
+        {
+            return await db.Table<Mark>().Where(item => item.SubjectID == subject.ID).ToListAsync();
+        }
+
+        public async Task<List<SubjectBook>> GetSubjectBooks()
+        {
+            var x = await db.Table<SubjectBook>().ToListAsync();
+            return x;
+        }
+
         public async Task<int> UpdateItem<T>(T item) where T : ATable
         {
             return await db.UpdateAsync(item);
         }
 
-        public async Task<int> DeleteItem<T>(int index) where T : ATable
+        public async Task<int> DeleteItem<T>(T item) where T : ATable
         {
-            return await db.DeleteAsync<T>(index);
+            return await db.DeleteAsync<T>(item.ID);
         }
 
         SQLiteAsyncConnection getDBConnection()
