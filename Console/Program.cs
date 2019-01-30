@@ -9,18 +9,12 @@ namespace ConsoleView
     {
         static void Main(string[] args)
         {
-            SubjectBook book = new SubjectBook()
-            {
-                Name = "jmeno",
-                Year = 2018
-            };
+            MainAsync(args).GetAwaiter().GetResult();
+        }
 
-            int x = AddBook(book).Result;
-
-            Console.Read();
-
-
-            ListBooks();
+        static async Task MainAsync(string[] args)
+        {
+            await ListBooks();
 
             Console.Read();
         }
@@ -30,7 +24,7 @@ namespace ConsoleView
             return await MarkFunctions.AddItem(book);
         }
 
-        private static async void ListBooks()
+        private static async Task ListBooks()
         {
             var books = await MarkFunctions.GetBooks();
 
