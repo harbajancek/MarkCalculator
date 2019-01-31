@@ -7,8 +7,8 @@ namespace Model
     {
         [Indexed]
         public int SubjectID { get; set; }
-        int value;
-        public int Value
+        float value;
+        public float Value
         {
             get { return value; }
             set
