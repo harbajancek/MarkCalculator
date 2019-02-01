@@ -32,6 +32,7 @@ namespace ConsoleView
                 consoleWrite += "ID: " + book.ID;
                 consoleWrite += " Name: " + book.Name;
                 consoleWrite += " Year: " + book.Year;
+                Console.WriteLine();
             }
 
             Console.WriteLine(consoleWrite);
