@@ -7,10 +7,8 @@ namespace Model
 {
     public class MarkFunctions
     {
-        public static async Task<float> GetAverage(Subject subject)
+        public static float GetAverage(List<Mark> marks)
         {
-            List<Mark> marks = await GetMarks(subject);
-
             float allMarkValue = 0;
             float markCount = 0;
 

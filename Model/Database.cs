@@ -8,7 +8,7 @@ using System.Reflection;
 
 namespace Model
 {
-    internal class Database
+    public class Database
     {
         public string dataPath { get; }
         SQLiteAsyncConnection db;

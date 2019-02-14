@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:AppView"
+             x:Class="AppView.MainPage">
+
+    <StackLayout>
+        <ScrollView>
+            <StackLayout x:Name="StackOfBooks">
+
+            </StackLayout>
+        </ScrollView>
+        
+        <!-- Place new controls here -->
+        <Label x:Name="ErrorLabel"
+           Text="No books found." 
+           HorizontalOptions="Center"
+           VerticalOptions="CenterAndExpand"
+           IsVisible="False"/>
+        <Button Text="Create a new student book" Pressed="createBookPressed"/>
+    </StackLayout>
+
+</ContentPage>
